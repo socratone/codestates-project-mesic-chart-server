@@ -1,0 +1,36 @@
+{
+  "name": "mesicchart-server",
+  "version": "1.0.0",
+  "description": "MEsic_Chart_Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "lint": "eslint .",
+    "precommit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestates/MEsicChart-server.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "S4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codestates/MEsicChart-server/issues"
+  },
+  "homepage": "https://github.com/codestates/MEsicChart-server#readme",
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-plugin-react": "^7.20.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.4"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
