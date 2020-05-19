@@ -27,6 +27,11 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.4"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
