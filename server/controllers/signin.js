@@ -20,7 +20,7 @@ const signin = async (req, res) => {
     const token = await jwt.sign(userInfo, secretKey, options);
     res.cookie('access-token', token, {httpOnly : true});
     res.status(201).json({token});
-  }else {
+  } else {
     res.status(404).end('Nonexistent user');
   }
   
