@@ -8,7 +8,7 @@ module.exports = {
     const user = await jwt.verify(token, secretKey);
 
     const musicList = await musics.findAll({ 
-      where: { user_id: user.id }
+      where: { userId: user.id }
     });
     res.status(200).send(musicList);
   },
@@ -16,13 +16,13 @@ module.exports = {
     const token = req.cookies['access-token'];
     const { id } = await jwt.verify(token, secretKey);
     const body = req.body;
-    if(!body.title || !body.description || !body.thumbnail || !body.video_url) {
+    if(!body.title || !body.description || !body.thumbnail || !body.videoId) {
       return res.status(400).send('잘못된 요청입니다.');
     } 
-    const { title, description, thumbnail, video_url } = req.body;
+    const { title, description, thumbnail, videoId } = req.body;
 
     const [user, created] = await musics.findOrCreate({
-      where: { video_url, user_id: id },
+      where: { videoId, userId: id },
       defaults: { title, description, thumbnail, playtime: 0 }
     });
 
@@ -37,14 +37,14 @@ module.exports = {
     const user = await jwt.verify(token, secretKey);
     const body = req.body;
     
-    if(!body.video_url) {
+    if(!body.videoId) {
       return res.status(400).send('잘못된 요청입니다.');
     } 
 
     const isOne = await musics.findOne({ 
       where: { 
-        video_url: body.video_url,
-        user_id: user.id 
+        videoId: body.videoId,
+        userId: user.id 
       } 
     });
     if (isOne === null) {
@@ -55,8 +55,8 @@ module.exports = {
     try {
       await musics.destroy({
         where: {
-          video_url: body.video_url,
-          user_id: user.id
+          videoId: body.videoId,
+          userId: user.id
         }
       });
     } catch {

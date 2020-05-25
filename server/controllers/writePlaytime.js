@@ -7,7 +7,7 @@ const wirtePlaytime = async (req, res) => {
   const user = await jwt.verify(token, secretKey);
   const body = req.body;
 
-  if(!body.playtime || !body.video_url) {
+  if(!body.playtime || !body.videoId) {
     return res.status(400).send('잘못된 요청입니다.');
   }
 
@@ -17,8 +17,8 @@ const wirtePlaytime = async (req, res) => {
 
   const isOne = await musics.findOne({ 
     where: { 
-      video_url: body.video_url,
-      user_id: user.id 
+      videoId: body.videoId,
+      userId: user.id 
     } 
   });
   if (isOne === null) {
@@ -29,8 +29,8 @@ const wirtePlaytime = async (req, res) => {
   const totalPlaytime = body.playtime + isOne.playtime;
   await musics.update({ playtime: totalPlaytime }, {
     where: {
-      user_id: user.id,
-      video_url: body.video_url
+      userId: user.id,
+      videoId: body.videoId
     }
   });
   res.status(200).send({ playtime: totalPlaytime });
