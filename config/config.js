@@ -12,9 +12,10 @@ module.exports = {
   test: {
     username: process.env.CI_DB_USERNAME,
     password: process.env.CI_DB_PASSWORD,
-    database: process.env.CI_DB_NAME,
-    host: '127.0.0.1',
-    dialect: 'mysql'
+    database: 'MEsicChart',
+    host: process.env.CI_DB_HOSTNAME,
+    dialect: 'mysql',
+    port: 13306
   },
   production: {
     username: process.env.PROD_DB_USERNAME,
@@ -24,9 +25,3 @@ module.exports = {
     dialect: 'mysql'
   }
 };
-
-
-
-
-
-
