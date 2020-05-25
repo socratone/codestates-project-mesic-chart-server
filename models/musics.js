@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     playtime: DataTypes.INTEGER,
-    video_url: DataTypes.STRING
+    videoId: DataTypes.STRING
   }, {});
   musics.associate = function(models) {
     musics.belongsTo(models.users, {
-      foreignKey: 'user_id'
+      foreignKey: 'userId'
     });
   };
   return musics;

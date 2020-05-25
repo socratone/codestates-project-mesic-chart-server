@@ -20,10 +20,10 @@ module.exports = {
       playtime: {
         type: Sequelize.INTEGER
       },
-      video_url: {
+      videoId: {
         type: Sequelize.STRING
       },
-      user_id: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
