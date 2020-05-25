@@ -1,6 +1,5 @@
-const { users, musics } = require('../../models/index');
+const { musics } = require('../../models/index');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 const secretKey = process.env.TOKEN_KEY;
 
 module.exports = {
@@ -9,28 +8,28 @@ module.exports = {
     const user = await jwt.verify(token, secretKey);
 
     const musicList = await musics.findAll({ 
-      where: { user_id: user.id }
+      where: { userId: user.id }
     });
     res.status(200).send(musicList);
   },
   postMusiclist : async (req, res) => {
     const token = req.cookies['access-token'];
-    const user = await jwt.verify(token, secretKey);
+    const { id } = await jwt.verify(token, secretKey);
     const body = req.body;
-    if(!body.title || !body.description || !body.thumbnail || !body.video_url) {
+    if(!body.title || !body.description || !body.thumbnail || !body.videoId) {
       return res.status(400).send('잘못된 요청입니다.');
     } 
-    const { title, description, thumbnail, video_url } = req.body;
+    const { title, description, thumbnail, videoId } = req.body;
 
-    const [user2, created] = await musics.findOrCreate({
-      where: { video_url, user_id: user.id },
+    const [user, created] = await musics.findOrCreate({
+      where: { videoId, userId: id },
       defaults: { title, description, thumbnail, playtime: 0 }
     });
 
     if (created) {
-      res.status(200).send(user2);
+      res.status(200).send(user);
     } else {
-      res.status(400).send('이미 추가한 음악입니다.');
+      res.status(200).send('이미 추가된 음악입니다.');
     }
   },
   deleteMusiclist : async (req, res) => {
@@ -38,14 +37,14 @@ module.exports = {
     const user = await jwt.verify(token, secretKey);
     const body = req.body;
     
-    if(!body.video_url) {
+    if(!body.videoId) {
       return res.status(400).send('잘못된 요청입니다.');
     } 
 
     const isOne = await musics.findOne({ 
       where: { 
-        video_url: body.video_url,
-        user_id: user.id 
+        videoId: body.videoId,
+        userId: user.id 
       } 
     });
     if (isOne === null) {
@@ -56,8 +55,8 @@ module.exports = {
     try {
       await musics.destroy({
         where: {
-          video_url: body.video_url,
-          user_id: user.id
+          videoId: body.videoId,
+          userId: user.id
         }
       });
     } catch {
