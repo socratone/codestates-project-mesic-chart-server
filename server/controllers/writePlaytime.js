@@ -1,10 +1,9 @@
-require('dotenv').config();
 const { musics } = require('../../models/index');
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.TOKEN_KEY;
 
 const wirtePlaytime = async (req, res) => {
   const token = req.cookies['access-token'];
+  const secretKey = process.env.TOKEN_KEY;
   const user = await jwt.verify(token, secretKey);
   const body = req.body;
 

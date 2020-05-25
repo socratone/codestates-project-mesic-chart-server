@@ -1,6 +1,5 @@
-const { users, musics } = require('../../models/index');
+const { musics } = require('../../models/index');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 const secretKey = process.env.TOKEN_KEY;
 
 module.exports = {
