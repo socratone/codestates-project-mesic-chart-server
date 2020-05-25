@@ -24,7 +24,7 @@ const signup = async (req, res) => {
     res.cookie('access-token', token, {httpOnly : true});
     res.status(201).json({token});
   }else {
-    res.status(409).end('alrady user');
+    res.status(409).end('already user');
   }
 };
 
