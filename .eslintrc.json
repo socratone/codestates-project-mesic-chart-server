@@ -6,7 +6,8 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:jest/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -19,7 +20,8 @@
         "ecmaVersion": 11
     },
     "plugins": [
-        "react"
+        "react",
+        "jest"
     ],
     "rules": {
         "no-console": 0,
@@ -27,6 +29,7 @@
             "error",
             "always"
         ],
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "jest/no-test-callback":0
     }
 }

@@ -22,7 +22,7 @@ const signup = async (req, res) => {
     const token = await jwt.sign(userInfo, secretKey, options);
     res.cookie('access-token', token, { httpOnly : true });
     res.status(201).json({ token });
-  }else {
+  } else {
     res.status(409).end('이미 존재하는 유저입니다.');
   }
 };

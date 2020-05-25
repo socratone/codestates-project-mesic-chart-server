@@ -6,5 +6,6 @@ module.exports = {
   getMusiclist,
   postMusiclist,
   deleteMusiclist,
-  writePlaytime : require('./writePlaytime')
+  writePlaytime: require('./writePlaytime'),
+  kakaoSignin: require('./kakaoSignin')
 };
