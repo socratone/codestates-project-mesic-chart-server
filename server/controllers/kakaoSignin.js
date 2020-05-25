@@ -21,7 +21,7 @@ const kakaoSignin = async (req, res) => {
   const options = {expiresIn: '1d'};
   const token = await jwt.sign(userInfo, secretKey, options);
   res.cookie('access-token', token, {httpOnly : true});
-  res.status(201).json({token});
+  res.redirect('http://3.34.124.39:3000/');
 };
 
 module.exports = kakaoSignin;
