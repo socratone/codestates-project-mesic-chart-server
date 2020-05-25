@@ -19,7 +19,7 @@ app.post('/delete', routes.deleteMusiclist);
 app.post('/writeplaytime', routes.writePlaytime);
 
 app.use('/kakao', (req, res) => {
-  const kakao = `https://kauth.kakao.com/oauth/authorize?client_id=d2cea205f0cd1833041e88c0afbd0189&redirect_uri=http://localhost:3000/oauth&response_type=code`;
+  const kakao = `https://kauth.kakao.com/oauth/authorize?client_id=d2cea205f0cd1833041e88c0afbd0189&redirect_uri=http://3.34.124.39:3000/oauth&response_type=code`;
   return res.redirect(kakao);
 });
 app.use('/oauth', routes.kakaoSignin);
