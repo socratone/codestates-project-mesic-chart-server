@@ -23,7 +23,6 @@ const signin = async (req, res) => {
   } else {
     res.status(404).end('비밀번호가 일치하지 않습니다.');
   }
-  
 };
 
 module.exports = signin;
