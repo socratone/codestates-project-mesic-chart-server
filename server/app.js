@@ -6,9 +6,7 @@ const routes = require('./controllers');
 const app = express();
 
 app.use(cors());
-
 app.use(cookieParser());
-
 app.use(bodyParser.json());
 
 app.use('/signin', routes.signin);
