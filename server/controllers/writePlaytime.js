@@ -25,13 +25,15 @@ const wirtePlaytime = async (req, res) => {
     return res.status(404).send('재생 리스트에서 videoId가 존재하지 않습니다.');
   } 
 
-  await musics.update({ playtime: body.playtime }, {
+  console.log('isone의 재생시간', isOne.playtime);
+  const totalPlaytime = body.playtime + isOne.playtime;
+  await musics.update({ playtime: totalPlaytime }, {
     where: {
       user_id: user.id,
       video_url: body.video_url
     }
   });
-  res.status(200).send({ playtime: body.playtime });
+  res.status(200).send({ playtime: totalPlaytime });
 };
 
 module.exports = wirtePlaytime;
