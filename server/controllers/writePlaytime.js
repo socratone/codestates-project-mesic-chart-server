@@ -22,7 +22,7 @@ const wirtePlaytime = async (req, res) => {
     } 
   });
   if (isOne === null) {
-    return res.status(404).send('해당 재생리스트에 url이 존재하지 않습니다.');
+    return res.status(404).send('재생 리스트에서 videoId가 존재하지 않습니다.');
   } 
 
   await musics.update({ playtime: body.playtime }, {

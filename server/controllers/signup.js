@@ -16,14 +16,14 @@ const signup = async (req, res) => {
   });
  
   if(created && user) {
-    const userInfo = {id : user.id};
+    const userInfo = { id : user.id };
     const secretKey = process.env.TOKEN_KEY;
-    const options = {expiresIn: '1d'};
+    const options = { expiresIn: '1d' };
     const token = await jwt.sign(userInfo, secretKey, options);
-    res.cookie('access-token', token, {httpOnly : true});
-    res.status(201).json({token});
+    res.cookie('access-token', token, { httpOnly : true });
+    res.status(201).json({ token });
   }else {
-    res.status(409).end('alrady user');
+    res.status(409).end('이미 존재하는 유저입니다.');
   }
 };
 
