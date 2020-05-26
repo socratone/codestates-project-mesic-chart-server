@@ -8,5 +8,6 @@ module.exports = {
   postMusiclist,
   deleteMusiclist,
   writePlaytime: require('./writePlaytime'),
-  kakaoSignin: require('./kakaoSignin')
+  kakaoSignin: require('./kakaoSignin'),
+  googleSignin: require('./googleSignin')
 };
