@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use('/signin', routes.signin);
 app.use('/signup', routes.signup);
-
+app.use('/signout', routes.signout);
 app.get('/musiclist', routes.getMusiclist);
 app.post('/musiclist', routes.postMusiclist);
 app.post('/delete', routes.deleteMusiclist);
