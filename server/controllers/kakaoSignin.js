@@ -21,7 +21,7 @@ const kakaoSignin = async (req, res) => {
   const options = {expiresIn: '1d'};
   const token = await jwt.sign(userInfo, secretKey, options);
   res.cookie('access-token', token, {httpOnly : true});
-  res.redirect('http://3.34.124.39:3000/');
+  res.redirect('http://mesic-chart-client.s3-website.ap-northeast-2.amazonaws.com/');
 };
 
 module.exports = kakaoSignin;
