@@ -6,7 +6,11 @@ const cookieParser = require('cookie-parser');
 const routes = require('./controllers');
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://mesic-chart-client.s3-website.ap-northeast-2.amazonaws.com'],
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -18,15 +22,9 @@ app.post('/musiclist', routes.postMusiclist);
 app.post('/delete', routes.deleteMusiclist);
 app.post('/writeplaytime', routes.writePlaytime);
 app.post('/googleSignin', routes.googleSignin); 
+app.post('/kakaoSignin', routes.kakaoSignin);
 
-app.use('/kakao', (req, res) => {
-  const kakao = `https://kauth.kakao.com/oauth/authorize?client_id=d2cea205f0cd1833041e88c0afbd0189&redirect_uri=http://3.34.124.39:3000/oauth&response_type=code`;
-  return res.redirect(kakao);
-});
-app.use('/oauth', routes.kakaoSignin);
-
-
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('listening 3000 port');
 });
 
