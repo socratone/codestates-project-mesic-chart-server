@@ -1,13 +1,10 @@
 const { users } = require('../../models');
 require('dotenv').config();
-const getKakaoUse = require('../../kakaoApi');
 const jwt = require('jsonwebtoken');
 
 const kakaoSignin = async (req, res) => {
-  const profile = await getKakaoUse(req);
-  const email = profile.id + '@kakao';
-  const name = profile.name;
-
+  const {id, name} = req.body;
+  const email = id + '@kakao.com';
   const [ user ] = await users.findOrCreate({
     where: { email },
     defaults: {
@@ -21,7 +18,7 @@ const kakaoSignin = async (req, res) => {
   const options = {expiresIn: '1d'};
   const token = await jwt.sign(userInfo, secretKey, options);
   res.cookie('access-token', token, {httpOnly : true});
-  res.redirect('http://mesic-chart-client.s3-website.ap-northeast-2.amazonaws.com/');
+  res.status(201).end();
 };
 
 module.exports = kakaoSignin;
